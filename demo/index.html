@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Mask</title>
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+        <meta content="telephone=no;email=no" name="format-detection" />
+        <meta content="yes" name="apple-touch-fullscreen" />
+        <meta content="width" name="mobileOptimized" />
+        <meta content="true" name="handheldFriendly" />
+        <script src="./zepto/zepto.js"></script>
+        <script src="./zepto/event.js"></script>
+        <script src="./zepto/fx.js"></script>
+        <script src="../src/mask.js"></script>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            
+            button {
+                padding: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Mask</h2>
+        <button class="useAnim">使用动画</button>
+        <button class="noAnim">不使用动画</button>
+        <script>
+            
+            var mask = new ZeptoMask({
+                clickHide: true,
+                useAnim: true
+            });
+            
+            mask.render();
+            
+            $('.useAnim').on('click', function() {
+                mask.config('useAnim', true);
+                mask.toggle();
+            });
+            
+            $('.noAnim').on('click', function() {
+                mask.config('useAnim', false);
+                mask.toggle();
+            });
+            
+            mask.mask.on('afterVisibleChange', function(e, data) {
+                console.log('visible:' + data.visible);
+                console.log('useAnim:' + data.useAnim);
+            });
+            
+        </script>
+    </body>
+</html>
